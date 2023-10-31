@@ -5,14 +5,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <p><a href="/hello">Greet the world!</a></p>
-
-        <form action="/hello" method="GET" id="nameForm">
+        <form action="/add" method="POST">
+            <p>Add a user account.</p>
             <div>
-                <label for="nameField">How should the app call you?</label>
-                <input name="myName" id="nameField">
-                <button>Greet me!</button>
+                <label for="firstName">First name:</label>
+                <input name="first" id="firstName" value="">
             </div>
+            <div>
+                <label for="lastName">Last name:</label>
+                <input name="last" id="lastName" value="">
+            </div>
+            <div>
+                <button>Add user account</button>
+            </div>
+        </form>
+
+        <form action="/list" method="GET">
+            <button>List user accounts</button>
         </form>
     </body>
 </html>

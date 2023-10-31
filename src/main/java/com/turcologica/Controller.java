@@ -29,24 +29,24 @@ public class Controller {
 //    }
 
     @Autowired
-    private UserAccountRepository userAccountRepository;
+    private UserRepository userRepository;
 
     @PostMapping("/add")
-    public String addUserAccount(@RequestParam String first, @RequestParam String last) {
-        UserAccount user = new UserAccount();
+    public String addUser(@RequestParam String first, @RequestParam String last) {
+        User user = new User();
         user.setFirstName(first);
         user.setLastName(last);
-        userAccountRepository.save(user);
-        return "Added new customer to repo!";
+        userRepository.save(user);
+        return "New user account was added to the repository.";
     }
 
     @GetMapping("/list")
-    public Iterable<UserAccount> getUserAccounts() {
-        return userAccountRepository.findAll();
+    public Iterable<User> getUsers() {
+        return userRepository.findAll();
     }
 
     @GetMapping("/find/{id}")
-    public UserAccount findUserAccountById(@PathVariable Integer id) {
-        return userAccountRepository.findUserAccountById(id);
+    public User findUserById(@PathVariable Long id) {
+        return userRepository.findUserById(id);
     }
 }
