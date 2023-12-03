@@ -1,12 +1,11 @@
 package com.turcologica.courses;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.springframework.security.core.userdetails.User;
+import com.turcologica.users.turcologica.TurcologicaUser;
+import com.turcologica.users.turcologica.TurcologicaUserRepository;
+import com.turcologica.users.turcologica.TurcologicaUserService;
+import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="COURSE")
@@ -19,11 +18,14 @@ public class Course {
     private String coursePrefix;
     private String lecturer;
     private String nameAttendingUser;
-//    private List<User> users; //TODO: ManyToOne from User's view
 
+    @ManyToMany(mappedBy = "attendedCourseSet")
+    private Set<TurcologicaUser> studentSet;
+
+    @ManyToMany(mappedBy = "taughtCourseSet")
+    private Set<TurcologicaUser> lecturerSet;
 
     public Course(String courseName, String coursePrefix, String lecturer, String nameAttendingUser) {
-//        this.courseID = courseID;
         this.courseName = courseName;
         this.coursePrefix = coursePrefix;
         this.lecturer = lecturer;

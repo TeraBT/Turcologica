@@ -22,7 +22,7 @@
                 <td>${course.courseName}</td>
                 <td>${course.lecturer}</td>
                 <td> <a href="delete-course?id=${course.courseID}" class="btn btn-danger">Delete</a></td>
-                <td> <a href="modify-todo?id=${course.courseID}" class="btn btn-success">Modify</a></td>
+                <td> <a href="modify-course?id=${course.courseID}" class="btn btn-secondary">Modify</a></td>
             </tr>
         </c:forEach>
         </tbody>

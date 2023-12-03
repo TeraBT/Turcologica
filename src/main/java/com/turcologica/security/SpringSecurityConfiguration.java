@@ -1,8 +1,7 @@
 package com.turcologica.security;
 
-import com.turcologica.users.TurcologicaUser;
-import com.turcologica.users.TurcologicaUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.turcologica.users.turcologica.TurcologicaUser;
+import com.turcologica.users.turcologica.TurcologicaUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,12 +30,14 @@ public class SpringSecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager createUserDetailsManager() {
 
-        UserDetails userDetails1 = createUser("chris", "qrt", "Christopher", "USER, ADMIN");
-        UserDetails userDetails2 = createUser("aycan", "abc", "Aycan", "USER");
-        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
+        UserDetails chris = createUser("chris", "vic", "Christopher", "Baumgartner-Trösch","DEV");
+        UserDetails aycan = createUser("aycan", "abc", "Aycan", "Yumrukçal", "ADMIN");
+        UserDetails student = createUser("student", "abc", "Student 1","Lastname","STUDENT");
+        UserDetails lecturer = createUser("lecturer", "abc", "Lecturer 1", "Lastname", "LECTURER");
+        return new InMemoryUserDetailsManager(chris, aycan, student, lecturer);
     }
 
-    private UserDetails createUser(String username, String password, String fullName, String... roles) {
+    private UserDetails createUser(String username, String password, String firstname, String lastname, String... roles) {
         Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
 
         UserDetails userDetails = User.builder()
@@ -46,7 +47,7 @@ public class SpringSecurityConfiguration {
                 .roles(roles)
                 .build();
 
-        turcologicaUserRepository.save(new TurcologicaUser(userDetails, fullName));
+        turcologicaUserRepository.save(new TurcologicaUser(userDetails, firstname, lastname));
         return userDetails;
     }
 

@@ -1,5 +1,5 @@
 <%@ include file="common/header.jspf" %>
-<%@ include file="common/navigation.jspf" %>
+<%@ include file="common/navigation-admin.jspf" %>
 
 <div class="container">
 
@@ -25,11 +25,7 @@
             <form:errors path="lecturer" cssClass="text-warning"/>
         </fieldset>
 
-
-
-
-<%--        <form:input type="hidden" path="id"/>--%>
-
+        <form:input type="hidden" path="courseID"/>
 <%--        <form:input type="hidden" path="done"/>--%>
 
         <input type="submit" class="btn btn-success"/>
